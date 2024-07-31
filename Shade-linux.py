@@ -8,8 +8,7 @@ import cv2
 import tkinter as tk
 from tkinter import filedialog
 from tqdm import tqdm
-
-# 顶点着色器代码
+# 顶点着色器
 vertex_shader_code = """
 #version 330
 in vec2 position;
@@ -20,8 +19,7 @@ void main() {
     fragTexCoord = texCoord;
 }
 """
-
-# 片段着色器代码
+# 片段着色器
 fragment_shader_code = """
 #version 330
 in vec2 fragTexCoord;
@@ -50,14 +48,14 @@ def enhance_image(image_path, output_path):
     img = enhancer.enhance(1.5)
     enhancer = ImageEnhance.Color(img)
     img = enhancer.enhance(1.5)
-    img.save(output_path, format='PNG')  # 保存为PNG格式
+    img.save(output_path, format='PNG')  # 保存PNG格式
 
 def process_images(input_folder, output_folder):
     os.makedirs(output_folder, exist_ok=True)
     image_files = [f for f in os.listdir(input_folder) if os.path.isfile(os.path.join(input_folder, f)) and f.lower().endswith(('png', 'jpg', 'jpeg', 'bmp', 'gif'))]
     for image_file in tqdm(image_files, desc="Processing images", unit="image"):
         input_path = os.path.join(input_folder, image_file)
-        output_path = os.path.join(output_folder, os.path.splitext(image_file)[0] + '.png')  # 确保输出为PNG格式
+        output_path = os.path.join(output_folder, os.path.splitext(image_file)[0] + '.png')  # 检查输出为PNG格式
         enhance_image(input_path, output_path)
 
 def select_directory(prompt):
@@ -151,7 +149,7 @@ def main():
     glfw.swap_buffers(window)
 
     print("按下回车键退出...")
-    input()  # 等待用户按下回车键
+    input()
 
     glfw.terminate()
 

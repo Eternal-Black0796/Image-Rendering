@@ -7,4 +7,4 @@ The OpenCV convolutional kernel is used for edge detection to enhance the edges 
 
 2、pip install glfw PyOpenGL Pillow numpy opencv-python tqdm pygame
 
-3、python3 Shade-(Your OS).py
+3、python3 Shade-"YourOS".py
